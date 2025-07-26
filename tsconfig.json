@@ -1,0 +1,15 @@
+// include 옵션을 이용하면 특정 경로 안에 있는 모든 typescript 파일을
+// 동시에 한번의 명령으로 컴파일하도록 설정 가능
+
+{
+  "compilerOptions": {
+    // 컴파일해서 만들어지는 JavaScript 코드의 버전을 설정
+    "skipLibCheck": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "outDir": "dist", // js파일 생성되는 경로 설정
+    "strict": true, // 엄격하게 볼지 여부
+    "moduleDetection": "force" // TypeScript가 각각의 파일을 어떤 모듈로 감지할 것인지 결정
+  },
+  "include": ["src"] // scr 폴더내의 파일 전부
+}
