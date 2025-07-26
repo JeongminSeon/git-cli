@@ -1,6 +1,6 @@
-import { mkdir, writeFile } from "fs/promises";
 import * as fs from "node:fs";
 import * as path from "path";
+import { ensureExists } from "./utils/fileUtils";
 
 export async function initGit() {
   // 현재 폴더의 위치
@@ -9,20 +9,14 @@ export async function initGit() {
   if (fs.existsSync("./mygit")) {
     console.log(`Reinitailized existing repository in ${pwd}`);
   } else {
-    try {
-      // 필요한 디렉토리 생성
-      await mkdir("./.mygit", { recursive: true });
-      await mkdir("./mygit/refs/heads", { recursive: true });
-      await mkdir("./mygit/objects", { recursive: true });
-
-      // 필요한 파일 생성
-      await writeFile("./mygit/HEAD", "ref: refs/heads/master");
-      await writeFile("./mygit/index", "");
-      await writeFile("./mygit/refs/hgeads/master", "");
-
-      console.log(`Initialized empty Git repository in ${pwd}`);
-    } catch (err) {
-      console.error("Something went wrong when create .mygit dir!", err);
-    }
+    console.log(`Initialized empty Git repository in ${pwd}`);
   }
+
+  // 파일 및 디렉토리 생성
+  await ensureExists("./.mygit", true);
+  await ensureExists("./.mygit/refs/heads", true);
+  await ensureExists("./.mygit/objects", true);
+  await ensureExists("./.mygit/HEAD", false, "ref: refs/heads/master");
+  await ensureExists("./.mygit/index", false, "");
+  await ensureExists("./.mygit/refs/heads/master", false, "");
 }
