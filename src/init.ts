@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "path";
-import { ensureExists } from "./utils/fileUtils";
+import { ensureExists } from "./utils/fileUtils.js";
 
 export async function initGit() {
   // 현재 폴더의 위치
