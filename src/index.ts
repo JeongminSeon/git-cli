@@ -1,5 +1,6 @@
 // cli 명령어 입력 받아보기
 
+import { addGit } from "./add.js";
 import { initGit } from "./init.js";
 
 export async function myGit(argv: string[]): Promise<void> {
@@ -10,7 +11,7 @@ export async function myGit(argv: string[]): Promise<void> {
       await initGit();
       break;
     case "add":
-      console.log("add git 실행");
+      await addGit(argv[1]);
       break;
     case "commit":
       console.log("commit git 실행");
