@@ -25,6 +25,13 @@ function isIgnored(filePath: string, ignorePatterns: string[]): boolean {
     if (pattern.endsWith("/")) {
       return relativePath.startsWith(pattern.slice(0, -1));
     }
+
+    // 와일드 카드 무시
+    if (pattern.endsWith("*.")) {
+      const ext = pattern.slice(2);
+      return relativePath.endsWith(`.${ext}`);
+    }
+
     // 정확히 일치하거나, 하위 경로인 경우
     return relativePath === pattern || relativePath.startsWith(`${pattern}/`);
   });
