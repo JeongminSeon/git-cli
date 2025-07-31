@@ -60,6 +60,8 @@ async function getAllFiles(dir: string): Promise<string[]> {
 // gitignore 필터링된 파일목록 반환
 export async function getFiles(dir: string): Promise<string[]> {
   const ignorePatterns = await getIgnorePatterns();
-  const allFiles = await getAllFiles(dir);
+
+  const filePath = path.resolve(process.cwd(), dir); // 절대경로로 변환
+  const allFiles = await getAllFiles(filePath);
   return allFiles.filter((file) => !isIgnored(file, ignorePatterns));
 }
