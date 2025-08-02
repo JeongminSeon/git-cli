@@ -12,6 +12,9 @@ export async function addGit(filePath: string) {
     return;
   }
 
+  // 파일인지 명령어인지 확인
+  // 경로면 getFiles 실행
+  //
   const files = await getFiles(filePath);
   console.log(files);
 }
