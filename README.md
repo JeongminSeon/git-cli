@@ -89,7 +89,6 @@ mygit add .
 ```
 
 > `package.json`의 bin 설정을 통해 `mygit` 명령어 등록  
-> `tsconfig.json`에서 `preserveShebang: true`로 설정해야 정상 실행됨
 
 ---
 
